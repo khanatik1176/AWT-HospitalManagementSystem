@@ -10,35 +10,35 @@ export class ScheduleMgtController {
   constructor(private readonly scheduleMgtService: ScheduleMgtService) {}
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Post('CreateSchedule')
   create(@Body(ValidationPipe) createScheduleMgtDto: CreateScheduleMgtDto) {
     return this.scheduleMgtService.createRepository(createScheduleMgtDto);
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor, Staff')
+  @Roles('doctor')
   @Get('ShowAllSchedule')
   findAll() {
     return this.scheduleMgtService.findAll();
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Get('ShowScheduleById/:schedule_id')
   findOne(@Param('schedule_id', ParseIntPipe) schedule_id: number) {
     return this.scheduleMgtService.findOne(schedule_id);
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Patch('UpdateSchedule/:schedule_id')
   update(@Param('schedule_id', ParseIntPipe) schedule_id: number, @Body(ValidationPipe) updateScheduleMgtDto: UpdateScheduleMgtDto) {
     return this.scheduleMgtService.update(schedule_id, updateScheduleMgtDto);
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Delete('DeleteSchedule/:schedule_id')
   async remove(@Param('schedule_id', ParseIntPipe) schedule_id: number) {
     await this.scheduleMgtService.remove(schedule_id);

@@ -62,7 +62,8 @@ export class RepMgtService {
   }
 
   async getRepAppointments(doc_id: number) {
-    const today = new Date().toISOString().split('T')[0];
+    //const today = new Date().toISOString().split('T')[0];
+    const today = "2024-05-15";
 
     const repAppointments = await this.repAppointmentRepository
       .createQueryBuilder('repAppointments')

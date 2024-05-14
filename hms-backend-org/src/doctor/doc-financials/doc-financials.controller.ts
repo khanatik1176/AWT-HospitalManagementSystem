@@ -11,14 +11,14 @@ export class DocFinancialsController {
   constructor(private readonly docFinancialsService: DocFinancialsService) {}
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Get('ViewDocEarnings/:doctor_id')
   showDocEarnings(@Param('doctor_id', ParseIntPipe) doctor_id: number) {
     return this.docFinancialsService.showDocEarnings(doctor_id);
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Get('ViewDocEarnings/:doctor_id/:startDate/:endDate')
   async showDocEarningsByDate(
     @Param('doctor_id', ParseIntPipe) doctor_id: number,
@@ -30,7 +30,7 @@ export class DocFinancialsController {
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Get('ViewDocCommission/:doctor_id')
   async findCommissions(@Param('doctor_id', ParseIntPipe) doctorId: number) {
     const commissions = await this.docFinancialsService.findCommissions(doctorId);
