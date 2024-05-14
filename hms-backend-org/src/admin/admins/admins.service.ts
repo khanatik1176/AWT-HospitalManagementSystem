@@ -21,8 +21,8 @@ export class AdminsService {
     // Create Auth entity
     const auth = new Auth();
     auth.email = createAdminDto.adminEmail;
-    auth.password = 'temporaryPassword'; // Handle password securely
-    auth.role = 'admin';
+    auth.password = 'Password123';
+    auth.role = 'Admin';
     auth.active = true;
 
     // Save both entities in a transaction

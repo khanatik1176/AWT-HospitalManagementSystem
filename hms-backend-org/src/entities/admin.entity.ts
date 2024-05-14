@@ -26,6 +26,6 @@ export class Admin {
   @Column()
   adminRole: string;
 
-  @Column({ type: 'decimal', precision: 5, scale: 2 })
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   adminSalary: number;
 }

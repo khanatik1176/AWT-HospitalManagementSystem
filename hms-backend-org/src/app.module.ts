@@ -9,13 +9,15 @@ import { OrgNameStoreMiddleware } from './middleware/org-name-store';
 import { DoctorsModule } from './admin/doctors/doctors.module';
 import { AdminsModule } from './admin/admins/admins.module';
 import { PatientsModule } from './admin/patients/patients.module';
+import { NotificationsModule } from './admin/notifications/notifications.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(Ormconfig),
             AuthModule,
             DoctorsModule,
             AdminsModule,
-            PatientsModule
+            PatientsModule,
+            NotificationsModule
           ],
   controllers: [AppController],
   providers: [AppService],
