@@ -7,6 +7,7 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 import { Auth } from 'src/entities/auth.entity';
 // ----------------
 // // Doctor Entities
+import { Doctor } from 'src/entities/doctor.entity'
 import { DocFinancials } from 'src/doctor/entities/doc-financial.entity';
 import { AppointmentList } from 'src/doctor/entities/doctor-appointment-list.entity';
 import { MedicineList } from 'src/doctor/entities/medicine-list.entity';
@@ -33,6 +34,7 @@ const config: PostgresConnectionOptions = {
   username: 'postgres',
   password: 'root',
   entities: [Auth,
+             Doctor,
              ScheduleMgt,
              PatientPrescription,
              AppointmentList,
