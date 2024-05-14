@@ -8,6 +8,7 @@ import { Admin } from 'src/entities/admin.entity';
 // ----------------
 // Common Entities
 import { Auth } from 'src/entities/auth.entity';
+import { Notification } from 'src/entities/notification.entity';
 // ----------------
 // // Doctor Entities
 import { Doctor } from 'src/entities/doctor.entity'
@@ -51,7 +52,8 @@ const config: PostgresConnectionOptions = {
              HealthTracker,
              SymptomChecker,
              User,
-             MedicalRecord
+             MedicalRecord,
+             Notification
             ],
   synchronize: true,
 };
