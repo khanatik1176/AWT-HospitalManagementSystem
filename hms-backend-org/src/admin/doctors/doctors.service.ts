@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Doctor } from '../../entities/doctor.entity';
 import { Auth } from '../../entities/auth.entity';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
+import { UpdateDoctorDto } from './dto/update-doctor.dto';
 
 @Injectable()
 export class DoctorsService {
@@ -40,7 +41,7 @@ export class DoctorsService {
     return this.doctorRepository.findOne({ where: { id } });
   }
 
-  async update(id: number, updateDoctorDto: CreateDoctorDto): Promise<Doctor> {
+  async update(id: number, updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
     await this.doctorRepository.update(id, updateDoctorDto);
     return this.doctorRepository.findOne({ where: { id } });
   }

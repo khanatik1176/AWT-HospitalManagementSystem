@@ -7,11 +7,13 @@ import Ormconfig from 'ormconfig';
 import { AuthModule } from './auth/auth.module';
 import { OrgNameStoreMiddleware } from './middleware/org-name-store';
 import { DoctorsModule } from './admin/doctors/doctors.module';
+import { AdminsModule } from './admin/admins/admins.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(Ormconfig),
             AuthModule,
-            DoctorsModule
+            DoctorsModule,
+            AdminsModule
           ],
   controllers: [AppController],
   providers: [AppService],

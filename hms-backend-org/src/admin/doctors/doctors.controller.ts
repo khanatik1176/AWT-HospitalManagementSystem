@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { DoctorsService } from './doctors.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
+import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { Doctor } from '../../entities/doctor.entity';
 
 @Controller('doctors')
@@ -23,7 +24,7 @@ export class DoctorsController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateDoctorDto: CreateDoctorDto): Promise<Doctor> {
+  async update(@Param('id') id: number, @Body() updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
     return this.doctorsService.update(id, updateDoctorDto);
   }
 
