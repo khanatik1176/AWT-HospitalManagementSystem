@@ -16,12 +16,14 @@ import { RepList } from 'src/doctor/entities/rep-list.entity';
 import { ScheduleMgt } from 'src/doctor/entities/schedule-mgt.entity';
 // // ----------------
 // // Patient Entities
-// import { Appointment } from 'src/entities/appointment.entity';
-// import { Feedback } from 'src/entities/feedback.entity';
-// import { HealthTracker } from 'src/entities/healthtracker.entity';
-// import { SymptomChecker } from 'src/entities/symptomChecker.entity';
-// import { User } from 'src/entities/user.entity';
-// import { MedicalRecord } from 'src/entities/medicalrecord.entity';
+import { Appointment } from 'src/patient/entities/appointment.entity';
+import { Feedback } from 'src/patient/entities/feedback.entity';
+import { HealthTracker } from 'src/patient/entities/healthTracker.entity';
+import { MedicalRecord } from 'src/patient/entities/medicalrecord.entity';
+import { SymptomChecker } from 'src/patient/entities/symptomChecker.entity';
+import { User } from 'src/patient/entities/user.entity';
+// // ----------------
+
 
 const config: PostgresConnectionOptions = {
   type: 'postgres',
@@ -37,13 +39,13 @@ const config: PostgresConnectionOptions = {
              DocFinancials,
              RepList,
              RepAppoitment,
-             MedicineList//,
-            //  Appointment,
-            //  Feedback,
-            //  HealthTracker,
-            //  SymptomChecker,
-            //  User,
-            //  MedicalRecord
+             MedicineList,
+             Appointment,
+             Feedback,
+             HealthTracker,
+             SymptomChecker,
+             User,
+             MedicalRecord
             ],
   synchronize: true,
 };
