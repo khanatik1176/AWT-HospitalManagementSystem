@@ -6,10 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import Ormconfig from 'ormconfig';
 import { AuthModule } from './auth/auth.module';
 import { OrgNameStoreMiddleware } from './middleware/org-name-store';
+import { DoctorsModule } from './admin/doctors/doctors.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(Ormconfig),
-            AuthModule
+            AuthModule,
+            DoctorsModule
           ],
   controllers: [AppController],
   providers: [AppService],
