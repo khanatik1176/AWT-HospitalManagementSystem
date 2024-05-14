@@ -29,21 +29,21 @@ export class MedicineListController {
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Get('ViewMedicineList')
   viewAllMedicine() {
     return this.medicineListService.viewAllMedicine();
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Get('ViewMedicineList/:med_id')
   viewSingleMedicine(@Param('med_id', ParseIntPipe) med_id: number) {
     return this.medicineListService.viewSingleMedicine(med_id);
   }
 
   @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  @Roles('doctor')
   @Patch('UpdateMedicineInfo/:med_id')
   update(@Param('med_id', ParseIntPipe) med_id: number, @Body() updateMedicineListDto: UpdateMedicineListDto) {
     return this.medicineListService.updateMedicineInfo(med_id, updateMedicineListDto);
