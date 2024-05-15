@@ -92,9 +92,9 @@ const FeedbackTable = () => {
         {viewFeedbacks && (
           <div className="feedback-details">
             <div className="overflow-x-auto">
-              <table className="table">
+              <table className="table bg-indigo-300 text-black w-11/12 mx-10 my-10">
                 <thead>
-                  <tr className='text-white text-xl'>
+                  <tr className='text-black text-xl'>
                     <th></th>
                     <th>Patient Email</th>
                     <th>Patient Rating</th>
@@ -104,7 +104,7 @@ const FeedbackTable = () => {
                 </thead>
                 <tbody>
                   {feedbacks.map(feedback => (
-                    <tr className='hover:bg-blue-500 text-white text-lg' key={feedback.id}>
+                    <tr className='hover:bg-blue-500 text-black text-lg' key={feedback.id}>
                       <th></th>
                       <td>{feedback.patient_email}</td>
                       <td>{feedback.patient_feedback}</td>

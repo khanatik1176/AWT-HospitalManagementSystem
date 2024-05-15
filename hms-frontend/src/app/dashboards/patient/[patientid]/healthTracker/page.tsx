@@ -128,12 +128,15 @@ const HealthTracker = () => {
           </p>
         </div>
         <div className="healthTrackerform">
-          <button className="bg-green-500 hover:bg-green-700 text-white rounded px-6 py-1 ml-5 mb-5" onClick={() => setHealthDetailsOpen(!healthDetailsOpen)}>Add Health Details</button>
+          <button className="bg-green-500 hover:bg-green-700 text-white rounded px-6 py-1 ml-12 mb-5" onClick={() => setHealthDetailsOpen(!healthDetailsOpen)}>Add Health Details</button>
           {healthDetailsOpen && (
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col" onSubmit={handleAddHealthDetails}>
+          <form className="bg-indigo-300 shadow-md rounded px-8 pt-6 pb-8 ml-5 mb-4 flex flex-col w-2/6 items-center" onSubmit={handleAddHealthDetails}>
 
+          <label htmlFor="" className='text-black font-bold text-xl mb-2'> Your Height in cm:</label>
           <input type="number" className='w-72 h-10 rounded text-black bg-white mb-5 pl-3 placeholder:text-black' placeholder="Height in cm" value={height} onChange={(e) => setHeight(Number(e.target.value))} />
+          <label htmlFor="" className='text-black font-bold text-xl mb-2'>Your Weight in Kg:</label>
           <input type="number" className='w-72 h-10 rounded text-black bg-white mb-5 pl-3 placeholder:text-black' placeholder="Weight in kg" value={weight} onChange={(e) => setWeight(Number(e.target.value))} />
+          <label htmlFor="" className='text-black font-bold text-xl mb-2'>Your Age:</label>
           <input type="number" className='w-72 h-10 rounded text-black bg-white mb-5 pl-3 placeholder:text-black' placeholder="Age" value={age} onChange={(e) => setAge(Number(e.target.value))} />
 
           <button type="submit" className='bg-green-500 hover:bg-green-700 text-white rounded px-2 py-1 w-32'>Submit</button>
@@ -141,7 +144,7 @@ const HealthTracker = () => {
           )}
 
           {bmi && bmiOpen && (
-            <div className="card w-96 bg-primary text-primary-content ml-10 mb-5">
+            <div className="card w-96 bg-indigo-300 text-primary-content ml-10 mb-5">
               <div className="card-body">
                 <h2 className="card-title">Your BMI</h2>
                 <p>{bmi}</p>
@@ -151,18 +154,18 @@ const HealthTracker = () => {
           )}
 
           <button 
-            ref={viewHealthTrackerButtonRef} // Add this line
-            className="bg-blue-500 hover:bg-blue-700 text-white rounded px-6 py-1 ml-5 mb-5" 
-            onClick={handleViewHealthTracker} // Modify this line
+            ref={viewHealthTrackerButtonRef} 
+            className="bg-blue-500 hover:bg-blue-700 text-white rounded px-6 py-1 ml-6 mb-5" 
+            onClick={handleViewHealthTracker} 
           >
             View Health Tracker
           </button>
           
           {viewHealthTracker && healthTracker.length > 0 && (
             <div className="overflow-x-auto">
-              <table className="table">
+              <table className="table bg-indigo-300 text-black w-1/3 mx-10 my-10">
                 <thead>
-                  <tr className='text-white text-xl'>
+                  <tr className='text-black text-xl'>
                     <th></th>
                     <th>Patient Email</th>
                     <th>Patient Height</th>
@@ -173,7 +176,7 @@ const HealthTracker = () => {
                 </thead>
                 <tbody>
                 {healthTracker.map((detail, index) => (
-                  <tr className='hover:bg-blue-500 text-white text-lg' key={index}>
+                  <tr className='hover:bg-blue-500 text-black text-lg' key={index}>
                 <th></th>
                 <td>{detail.patient_email}</td>
                 <td>{detail.patient_height}</td>
@@ -182,7 +185,7 @@ const HealthTracker = () => {
                 <td>{detail.healthTracker_Status}</td>
                 <td>
                 <button 
-                className="bg-red-500 hover:bg-red-700 text-white rounded px-6 py-1 ml-5 mb-5" 
+                className="bg-red-500 hover:bg-red-700 text-black rounded px-6 py-1 ml-5 mb-5" 
                   onClick={() => disableHealthTracker(detail.id)}
                     >
                     Disable
@@ -190,7 +193,7 @@ const HealthTracker = () => {
                   </td>
                     <td>
                   <button 
-                  className="bg-yellow-500 hover:bg-yellow-700 text-white rounded px-6 py-1 ml-5 mb-5" 
+                  className="bg-yellow-500 hover:bg-yellow-700 text-black rounded px-6 py-1 ml-5 mb-5" 
                   onClick={() => calculateBmi(detail.id)}
                   >
                   Check BMI
