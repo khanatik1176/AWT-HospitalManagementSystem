@@ -35,7 +35,7 @@ const DashboardPanel = () => {
 
   return (
     <div className="dashboard-main bg-gray-600 h-screen">
-      <div className='bg-indigo-400 h-52'>
+      <div className='bg-indigo-400 h-3/6'>
         <h1 className='text-black text-4xl p-10 font-bold'> Welcome {data}</h1> {/* Use data state variable */}
       </div>
     </div>

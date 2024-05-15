@@ -79,19 +79,22 @@ const Page = () => {
         <button className="bg-white text-black rounded px-6 py-1 ml-16" onClick={() => setViewTable(!viewTable)}>View</button>
         <button className="bg-green-500 text-white rounded px-6 py-1 ml-5 mb-5" onClick={() => setFormOpen(!formOpen)}>Add</button>
         {formOpen && (
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col" onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
-        <input type="text" className='w-72 h-10 rounded text-black bg-white mb-5 pl-3 placeholder:text-black' placeholder="Doctor Name" value={newRow.doctor_name} onChange={e => setNewRow({ ...newRow, doctor_name: e.target.value })} />
-        <input type="date" placeholder="Appointment Date" className='w-72 h-10 rounded text-black bg-white mb-5 pl-3' value={newRow.appointment_date} onChange={e => setNewRow({ ...newRow, appointment_date: e.target.value })} />
-        <input type="time" placeholder="Appointment Time" className='w-72 h-10 rounded text-black bg-white mb-5 pl-3' value={newRow.appointment_time} onChange={e => setNewRow({ ...newRow, appointment_time: e.target.value })} />
+        <form className="bg-indigo-300 shadow-md rounded px-8 pt-6 pb-8 ml-5 mb-4 flex flex-col w-2/6 items-center" onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
+          <label htmlFor="" className='text-black font-bold text-xl mb-2'> Your Doctor Name :</label>
+        <input type="text" className='w-72 h-10 rounded text-black bg-stone-400 mb-5 pl-3 pr-5 placeholder:text-black font-bold' placeholder="Doctor Name" value={newRow.doctor_name} onChange={e => setNewRow({ ...newRow, doctor_name: e.target.value })} />
+        <label htmlFor="" className='text-black font-bold text-xl mb-2'> Appointment Date:</label>
+        <input type="date" placeholder="Appointment Date" className='w-72 h-10 rounded text-black bg-stone-400 mb-5 pl-3 pr-5 font-bold' value={newRow.appointment_date} onChange={e => setNewRow({ ...newRow, appointment_date: e.target.value })} />
+        <label htmlFor="" className='text-black font-bold text-xl mb-2'> Appointment Time:</label>
+        <input type="time" placeholder="Appointment Time" className='w-72 h-10 rounded text-black bg-stone-400 mb-5 pl-3 pr-5 font-bold'  value={newRow.appointment_time} onChange={e => setNewRow({ ...newRow, appointment_time: e.target.value })} />
         <button type="submit" className='bg-green-500 text-white rounded px-2 py-1 w-32'>Add</button>
         </form>
       )}
         {viewTable && (
           <div className="appointment-details">
             <div className="overflow-x-auto">
-              <table className="table">
+              <table className="table bg-indigo-300 text-black w-11/12 mx-10 my-10">
                 <thead>
-                  <tr className='text-white text-xl'>
+                  <tr className='text-black text-xl'>
                     <th></th>
                     <th>Patient Email</th>
                     <th>Doctor Name</th>
@@ -101,7 +104,7 @@ const Page = () => {
                 </thead>
                 <tbody>
                   {tableData.map(row => (
-                    <tr className='hover:bg-blue-500 text-white text-lg' key={row.id}>
+                    <tr className='hover:bg-blue-500 text-black text-lg' key={row.id}>
                       <th></th>
                       <td>{row.patient_email}</td>
                       <td>{row.doctor_name}</td>
