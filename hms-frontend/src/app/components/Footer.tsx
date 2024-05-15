@@ -12,7 +12,7 @@ const Footer = () => {
     <div className='footer-area bg-indigo-400 h-70 flex justify-between pr-72'>
 
       <div className="footer-logo px-10 py-10">
-        <Link href="/"> <Image src={Logo} height={150} width={150}></Image>
+        <Link href="/"> <Image src={Logo} height={150} width={150} alt=""></Image>
         </Link>
 
 
