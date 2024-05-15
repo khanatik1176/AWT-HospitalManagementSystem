@@ -5,8 +5,8 @@ import "../../../../../src/app/globals.css";
 import React from 'react'
 
 import DashHeader from '@/app/components/dashHeader'
-import HeaderMobile from "@/app/components/header-mobile";
-import SideBar from "@/app/components/Sidebar";
+import HeaderMobile from "@/app/components/header-mobile-doc";
+import SideBar from "@/app/components/Sidebar-doc";
 import MarginWidthWrapper from "@/app/components/margin-width-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
