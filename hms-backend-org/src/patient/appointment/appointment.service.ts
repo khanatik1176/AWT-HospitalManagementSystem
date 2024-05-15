@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Appointment } from 'src/entities/appointment.entity';
 import { Repository } from 'typeorm';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { Session } from 'express-session';
+import { Appointment } from '../entities/appointment.entity';
 
 @Injectable()
 export class AppointmentService {

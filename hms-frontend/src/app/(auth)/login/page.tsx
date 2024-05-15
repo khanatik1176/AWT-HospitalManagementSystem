@@ -40,35 +40,87 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/auth/signin', formData);
-      console.log(response.data);
+      const response = await axios.post('http://localhost:5500/tenency-auth/signin', formData.email);
+      console.log("Organization Name Received from Super Admin Backend: ", response);
+      const organizationName = response.data;
+      Cookies.set('organizationName', organizationName);
+      console.log('organizationName:', Cookies.get('organizationName'));
 
-      const  {token,user_data}  = response.data;
-      const {id,email,role,password} = user_data;
-      console.log(token);
-      Cookies.set('token', token);
-      Cookies.set('email', formData.email);
-      Cookies.set('id', id);
+      fetch('http://localhost:4000/auth/set-database', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ databaseName: organizationName }),
+      });
 
-      console.log('Token cookie:', Cookies.get('token'));
-      console.log('Email cookie:', Cookies.get('email'));
-      console.log('Id cookie:', Cookies.get('id'));
+      console.log(formData);
+
+      if (response.data !== null) {
+        const responseOrg = await axios.post('http://localhost:4000/auth/signin', formData);
+
+        console.log(responseOrg.data);
+
+        const  {token,user_data}  = responseOrg.data;
+        const {id,email,role,password} = user_data;
+        console.log(token);
+        Cookies.set('token', token);
+        Cookies.set('email', formData.email);
+        Cookies.set('id', id);
+
+        console.log('Token cookie:', Cookies.get('token'));
+        console.log('Email cookie:', Cookies.get('email'));
+        console.log('ID cookie:', Cookies.get('id'));
 
 
-      if (document.getElementById('remember').checked) {
-        sessionStorage.setItem('email', formData.email);
-        sessionStorage.setItem('password', formData.password )
-      } else {
-        sessionStorage.removeItem('email');
+        if (document.getElementById('remember').checked) {
+          sessionStorage.setItem('email', formData.email);
+          sessionStorage.setItem('password', formData.password )
+        } else {
+          sessionStorage.removeItem('email');
+        }
+
+        toast.success('Sign in successful');
+        router.push(`/dashboards/${role}/${id}/dashboardpanel`);
       }
-
-      toast.success('Sign in successful');
-      router.push(`/dashboards/${role}/${id}/dashboardpanel`);
+      else {
+        toast.error('Sign in failed. Please check your credentials.');
+      }
     } catch (error) {
       console.error('Error signing in:', error);
       toast.error('Sign in failed. Please check your credentials.');
     }
   };
+
+  //   try {
+  //     const response = await axios.post('http://localhost:4000/auth/signin', formData);
+  //     console.log(response.data);
+
+  //     const  {token,user_data}  = response.data;
+  //     const {id,email,role,password} = user_data;
+  //     console.log(token);
+  //     Cookies.set('token', token);
+  //     Cookies.set('email', formData.email);
+  //     Cookies.set('id', id);
+
+  //     console.log('Token cookie:', Cookies.get('token'));
+  //     console.log('Email cookie:', Cookies.get('email'));
+
+
+  //     if (document.getElementById('remember').checked) {
+  //       sessionStorage.setItem('email', formData.email);
+  //       sessionStorage.setItem('password', formData.password )
+  //     } else {
+  //       sessionStorage.removeItem('email');
+  //     }
+
+  //     toast.success('Sign in successful');
+  //     router.push(`/dashboards/${role}/${id}/dashboardpanel`);
+  //   } catch (error) {
+  //     console.error('Error signing in:', error);
+  //     toast.error('Sign in failed. Please check your credentials.');
+  //   }
+  // };
 
   useEffect(() => {
     setIsloaded(true);

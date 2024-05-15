@@ -12,12 +12,11 @@ export class MedicalRecordService {
     private medicalRecordRepo: Repository<MedicalRecord>,
   ) {}
 
-  async saveFile(file: Express.Multer.File,session: Session): Promise<MedicalRecord> {
+  async saveFile(file: Express.Multer.File): Promise<MedicalRecord> {
 
     const medicalRecord = new MedicalRecord();
     medicalRecord.originalname = file.originalname;
     medicalRecord.filename = file.filename;
-    medicalRecord.patient_email = session['email'];
 
     if (!medicalRecord.filename) {
       throw new Error('Filename is required');

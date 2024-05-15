@@ -4,8 +4,8 @@ import { CreateFeedbackDto } from './dto/create-feedback.dto';
 import { Req } from '@nestjs/common';
 import { Request } from 'express';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '../auth/gurard/auth.guard';
-import { Roles } from '../decorators/roles.decorator';
+import { AuthGuard } from 'src/auth/gurard/auth.guard';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @Controller('feedback')
 export class FeedbackController {

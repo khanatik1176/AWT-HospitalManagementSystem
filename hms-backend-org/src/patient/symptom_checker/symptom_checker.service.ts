@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSymptomCheckerDto } from './dto/create-symptom_checker.dto';
-import { SymptomChecker } from 'src/entities/symptomChecker.entity';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {Session} from 'express-session';
+import { SymptomChecker } from '../entities/symptomChecker.entity';
 
 
 @Injectable()
@@ -14,11 +15,10 @@ export class SymptomCheckerService {
     private symptomCheckerRepo: Repository<SymptomChecker>
   ) {}
 
-    async createSymptoms(createSymptomCheckerDto: CreateSymptomCheckerDto, session: Session) {
+    async createSymptoms(createSymptomCheckerDto: CreateSymptomCheckerDto) {
 
     console.log("Symptoms Stored Successfully");
     
-    createSymptomCheckerDto.patient_email = session['email'];
     const symptom_checker_data = await this.symptomCheckerRepo.create(createSymptomCheckerDto);
     return await this.symptomCheckerRepo.save(symptom_checker_data);
     

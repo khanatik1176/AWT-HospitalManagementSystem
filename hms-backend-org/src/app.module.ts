@@ -15,12 +15,12 @@ import { MedicineListModule } from './doctor/medicine-list/medicine-list.module'
 import { PatientMgtSysModule } from './doctor/patient-mgt-sys/patient-mgt-sys.module';
 import { RepMgtModule } from './doctor/rep-mgt/rep-mgt.module';
 import { ScheduleMgtModule } from './doctor/schedule-mgt/schedule-mgt.module';
-import { Appointment } from './patient/entities/appointment.entity';
-import { Feedback } from './patient/entities/feedback.entity';
-import { HealthTracker } from './patient/entities/healthTracker.entity';
-import { MedicalRecord } from './patient/entities/medicalrecord.entity';
-import { SymptomChecker } from './patient/entities/symptomChecker.entity';
-import { User } from './patient/entities/user.entity';
+import { AppointmentModule } from './patient/appointment/appointment.module';
+import { FeedbackModule } from './patient/feedback/feedback.module';
+import { HealthTrackerModule } from './patient/health-tracker/health-tracker.module';
+import { MedicalRecordModule } from './patient/medical-record/medical-record.module';
+import { SymptomCheckerModule } from './patient/symptom_checker/symptom_checker.module';
+import { UserModule } from './patient/user/user.module';
 @Module({
   imports: [TypeOrmModule.forRoot(Ormconfig),
             AuthModule,
@@ -34,12 +34,12 @@ import { User } from './patient/entities/user.entity';
             DocFinancialsModule,
             RepMgtModule,
             MedicineListModule,
-            Appointment,
-            Feedback,
-            HealthTracker,
-            MedicalRecord,
-            SymptomChecker,
-            User
+            AppointmentModule,
+            FeedbackModule,
+            HealthTrackerModule,
+            MedicalRecordModule,
+            SymptomCheckerModule,
+            UserModule
 
           ],
   controllers: [AppController],

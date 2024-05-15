@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateHealthTrackerDto } from './dto/create-health-tracker.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { HealthTracker } from 'src/entities/healthtracker.entity';
 import { Repository } from 'typeorm';
 import { UpdateHealthTrackerDto } from './dto/update-health-tracker.dto';
 import { Session } from 'express-session';
+import { HealthTracker } from '../entities/healthTracker.entity';
 
 @Injectable()
 export class HealthTrackerService {

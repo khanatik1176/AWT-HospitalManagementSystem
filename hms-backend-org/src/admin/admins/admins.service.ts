@@ -38,16 +38,16 @@ export class AdminsService {
     return this.adminRepository.find();
   }
 
-  async findOne(id: number): Promise<Admin> {
-    return this.adminRepository.findOne({where: { id } });
+  async findOne(email: string): Promise<Admin> {
+    return this.adminRepository.findOne({where: { adminEmail: email } });
   }
 
-  async update(id: number, updateAdminDto: UpdateAdminDto): Promise<Admin> {
-    await this.adminRepository.update(id, updateAdminDto);
-    return this.adminRepository.findOne({where: { id } });
+  async update(email: string, updateAdminDto: UpdateAdminDto): Promise<Admin> {
+    await this.adminRepository.update(email, updateAdminDto);
+    return this.adminRepository.findOne({where: { adminEmail: email } });
   }
 
-  async remove(id: number): Promise<void> {
-    await this.adminRepository.delete(id);
+  async remove(email: string): Promise<void> {
+    await this.adminRepository.delete({ adminEmail: email } );
   }
 }

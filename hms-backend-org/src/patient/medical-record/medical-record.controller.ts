@@ -7,8 +7,9 @@ import { diskStorage } from 'multer';
 import { Req } from '@nestjs/common';
 import { Request } from 'express';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '../auth/gurard/auth.guard';
-import { Roles } from '../decorators/roles.decorator';
+import { AuthGuard } from 'src/auth/gurard/auth.guard';
+import { Roles } from 'src/decorators/roles.decorator';
+
 
 
 @Controller('medical-record')
@@ -23,8 +24,8 @@ export class MedicalRecordController {
 }))
 async uploadFile(@UploadedFile() file: any,  @Req() req: Request) {
   console.log(file);
-  await this.medicalRecordService.saveFile(file, req.session);
-  return { filename: file.filename, session: req.session };
+  await this.medicalRecordService.saveFile(file);
+  return { filename: file.filename};
 }
 
   @UseGuards(AuthGuard)

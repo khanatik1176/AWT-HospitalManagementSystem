@@ -4,7 +4,8 @@ import { MedicalRecordService } from './medical-record.service';
 import { MedicalRecordController } from './medical-record.controller';
 import { MedicalRecord } from '../entities/medicalrecord.entity';
 import { NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { LoggingMiddleware } from '../middleware/logging-middleware';
+import { LoggingMiddleware } from 'src/middleware/logging-middleware';
+
 
 @Module({
   imports: [TypeOrmModule.forFeature([MedicalRecord])],
