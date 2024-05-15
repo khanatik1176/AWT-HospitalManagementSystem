@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, ValidationPipe, UseGuards, Query } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
-import { AuthGuard } from '../auth/gurard/auth.guard';
-import { Roles } from '../decorators/roles.decorator';
 import { Req } from '@nestjs/common';
 import { Request } from 'express';
+import { AuthGuard } from 'src/auth/gurard/auth.guard';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @Controller('appointment')
 export class AppointmentController {

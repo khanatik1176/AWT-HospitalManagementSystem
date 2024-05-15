@@ -13,9 +13,9 @@ export class FeedbackService {
   ) {}
 
   async create(createFeedbackDto: CreateFeedbackDto) {
-    console.log("Feedback Successfully");
-    const feedback_data = await this.feedbackRepo.create(createFeedbackDto);
-    return await this.feedbackRepo.save(feedback_data);
+    // console.log("Feedback Successfully");
+    // const feedback_data = await this.feedbackRepo.create(createFeedbackDto);
+    // return await this.feedbackRepo.save(feedback_data);
   }
 
   async findAll() {

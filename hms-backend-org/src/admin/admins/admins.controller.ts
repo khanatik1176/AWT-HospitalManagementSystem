@@ -23,17 +23,17 @@ export class AdminsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Admin> {
-    return this.adminsService.findOne(id);
+  async findOne(@Param('email') email: string): Promise<Admin> {
+    return this.adminsService.findOne(email);
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateAdminDto: UpdateAdminDto): Promise<Admin> {
-    return this.adminsService.update(id, updateAdminDto);
+  async update(@Param('email') email: string, @Body() updateAdminDto: UpdateAdminDto): Promise<Admin> {
+    return this.adminsService.update(email, updateAdminDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: number): Promise<void> {
-    return this.adminsService.remove(id);
+  async remove(@Param('email') email: string): Promise<void> {
+    return this.adminsService.remove(email);
   }
 }

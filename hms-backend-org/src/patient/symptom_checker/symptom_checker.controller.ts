@@ -4,8 +4,9 @@ import { CreateSymptomCheckerDto } from './dto/create-symptom_checker.dto';
 import { Req } from '@nestjs/common';
 import { Request } from 'express';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '../auth/gurard/auth.guard';
-import { Roles } from '../decorators/roles.decorator';
+import { AuthGuard } from 'src/auth/gurard/auth.guard';
+import { Roles } from 'src/decorators/roles.decorator';
+
 
 @Controller('symptom-checker')
 export class SymptomCheckerController {
@@ -14,8 +15,8 @@ export class SymptomCheckerController {
   @UseGuards(AuthGuard)
   @Roles('patient')
   @Post('add-symptoms')
-  create(@Body(ValidationPipe) createSymptomCheckerDto: CreateSymptomCheckerDto,  @Req() req: Request) {
-    return this.symptomCheckerService.createSymptoms(createSymptomCheckerDto,req.session);
+  create(@Body(ValidationPipe) createSymptomCheckerDto: CreateSymptomCheckerDto) {
+    return this.symptomCheckerService.createSymptoms(createSymptomCheckerDto);
   }
 
   @UseGuards(AuthGuard)
