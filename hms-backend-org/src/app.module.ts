@@ -15,7 +15,12 @@ import { MedicineListModule } from './doctor/medicine-list/medicine-list.module'
 import { PatientMgtSysModule } from './doctor/patient-mgt-sys/patient-mgt-sys.module';
 import { RepMgtModule } from './doctor/rep-mgt/rep-mgt.module';
 import { ScheduleMgtModule } from './doctor/schedule-mgt/schedule-mgt.module';
-
+import { Appointment } from './patient/entities/appointment.entity';
+import { Feedback } from './patient/entities/feedback.entity';
+import { HealthTracker } from './patient/entities/healthTracker.entity';
+import { MedicalRecord } from './patient/entities/medicalrecord.entity';
+import { SymptomChecker } from './patient/entities/symptomChecker.entity';
+import { User } from './patient/entities/user.entity';
 @Module({
   imports: [TypeOrmModule.forRoot(Ormconfig),
             AuthModule,
@@ -29,6 +34,13 @@ import { ScheduleMgtModule } from './doctor/schedule-mgt/schedule-mgt.module';
             DocFinancialsModule,
             RepMgtModule,
             MedicineListModule,
+            Appointment,
+            Feedback,
+            HealthTracker,
+            MedicalRecord,
+            SymptomChecker,
+            User
+
           ],
   controllers: [AppController],
   providers: [AppService],
