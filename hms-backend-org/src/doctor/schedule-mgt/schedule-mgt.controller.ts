@@ -9,8 +9,8 @@ import { Roles } from 'src/decorators/roles.decorator';
 export class ScheduleMgtController {
   constructor(private readonly scheduleMgtService: ScheduleMgtService) {}
 
-  @UseGuards(AuthGuard)
-  @Roles('doctor')
+  // @UseGuards(AuthGuard)
+  // @Roles('doctor')
   @Post('CreateSchedule')
   create(@Body(ValidationPipe) createScheduleMgtDto: CreateScheduleMgtDto) {
     return this.scheduleMgtService.createRepository(createScheduleMgtDto);

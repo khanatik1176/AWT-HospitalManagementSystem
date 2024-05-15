@@ -25,7 +25,7 @@ const adminId = parts[3];
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`http://localhost:4000/admin/patients`, {
+        const result = await axios.get(`http://localhost:4000/admin/doctors`, {
           headers: {
             'Authorization': `Bearer ${token}` 
           }

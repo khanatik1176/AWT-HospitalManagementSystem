@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const DashboardPanel = () => {
+const header = () => {
 
   const [data, setData] = useState('');
   const [error, setError] = useState(null);
@@ -13,15 +13,15 @@ const DashboardPanel = () => {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get(`http://localhost:4000/user/find/${email}`, {
+      const result = await axios.get(`http://localhost:4000/admin/admins/${email}`, {
         headers: {
           'Authorization': `Bearer ${token}` 
         }
       });
-      setData(result.data[0].patient_fullname);
+      setData(result.data.adminFullName);
       console.log(result.data) // Use result.data.patient_fullname directly
       console.log(data); // Use result.data.patient_fullname directly
-    } catch (err) {
+    } catch (err:any) {
       setError(err.response.data.message);
       console.error(err);
     }
@@ -34,12 +34,12 @@ const DashboardPanel = () => {
   }
 
   return (
-    <div className="dashboard-main bg-gray-600 h-screen">
-      <div className='bg-indigo-400 h-3/6'>
-        <h1 className='text-black text-4xl p-10 font-bold'> Welcome {data}</h1> {/* Use data state variable */}
+    <div className="header-main bg-gray-600 h-screen">
+      <div className='bg-indigo-400 h-50'>
+        <h1 className='text-black text-4xl p-10 font-bold'> Welcome {data}</h1>
       </div>
     </div>
   )
 }
 
-export default DashboardPanel;
+export default header;

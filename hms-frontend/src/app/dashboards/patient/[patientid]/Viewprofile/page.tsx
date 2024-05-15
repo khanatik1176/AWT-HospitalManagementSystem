@@ -68,7 +68,7 @@ const Profilepage = () => {
   <div className='Information-area'>
 
   <div className="overflow-x-auto">
-  <table className="table">
+  <table className="table table bg-indigo-300 text-black ">
     {/* head */}
     <thead>
       <tr className='bg-black text-white text-center'>

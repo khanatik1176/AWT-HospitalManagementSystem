@@ -5,9 +5,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SIDENAV_ITEMS } from '@/constants-doc';
+
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react';
+import { SIDENAV_ITEMS } from '@/constants';
 
 const SideBar = () => {
   return (

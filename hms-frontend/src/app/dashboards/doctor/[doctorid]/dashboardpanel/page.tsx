@@ -6,7 +6,7 @@ const dashboardPanel = () => {
   return (
     <div className="dashboard-main bg-gray-600 h-screen">
     <div className='bg-indigo-400 h-52'>
-     <h1 className='text-black text-4xl p-10 font-bold'> Welcome Mr.X</h1>
+     <h1 className='text-black text-4xl p-10 font-bold'> Welcome Dr. Amin Haque</h1>
     
     <div className='search-bar-area flex justify-end pr-10'>
         <form action="" className="search">
