@@ -18,10 +18,10 @@ const DashboardPanel = () => {
           'Authorization': `Bearer ${token}` 
         }
       });
-      setData(result.data[0].admin_fullname);
+      setData(result.data.adminFullName);
       console.log(result.data) // Use result.data.patient_fullname directly
       console.log(data); // Use result.data.patient_fullname directly
-    } catch (err) {
+    } catch (err:any) {
       setError(err.response.data.message);
       console.error(err);
     }
@@ -35,7 +35,7 @@ const DashboardPanel = () => {
 
   return (
     <div className="dashboard-main bg-gray-600 h-screen">
-      <div className='bg-indigo-400 h-52'>
+      <div className='bg-indigo-400 h-50'>
         <h1 className='text-black text-4xl p-10 font-bold'> Welcome {data}</h1> {/* Use data state variable */}
       </div>
     </div>

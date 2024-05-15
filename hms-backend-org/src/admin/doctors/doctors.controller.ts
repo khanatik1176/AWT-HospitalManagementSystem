@@ -23,17 +23,17 @@ export class DoctorsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<Doctor> {
-    return this.doctorsService.findOne(id);
+  async findOne(@Param('email') email: string): Promise<Doctor> {
+    return this.doctorsService.findOne(email);
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
-    return this.doctorsService.update(id, updateDoctorDto);
+  async update(@Param('email') email: string, @Body() updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
+    return this.doctorsService.update(email, updateDoctorDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: number): Promise<void> {
-    return this.doctorsService.remove(id);
+  async remove(@Param('email') email: string): Promise<void> {
+    return this.doctorsService.remove(email);
   }
 }

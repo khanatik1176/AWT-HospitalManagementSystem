@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Doctor } from '../../entities/doctor.entity';
@@ -37,16 +37,22 @@ export class DoctorsService {
     return this.doctorRepository.find();
   }
 
-  async findOne(id: number): Promise<Doctor> {
-    return this.doctorRepository.findOne({ where: { id } });
+  async findOne(email: string): Promise<Doctor> {
+    const doctor = await this.doctorRepository.findOne({ where: { doctorEmail: email } });
+    if (!doctor) {
+      throw new NotFoundException(`Doctor with email ${email} not found`);
+    }
+    return doctor;
   }
 
-  async update(id: number, updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
-    await this.doctorRepository.update(id, updateDoctorDto);
-    return this.doctorRepository.findOne({ where: { id } });
+  async update(email: string, updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
+    await this.doctorRepository.update(email, updateDoctorDto);
+    return this.doctorRepository.findOne({ where: { doctorEmail: email } });
   }
 
-  async remove(id: number): Promise<void> {
-    await this.doctorRepository.delete(id);
+  async remove(email: string): Promise<void> {
+    const doctor = (await this.doctorRepository.findOne({ where: { doctorEmail: email } })).id;
+    console.log(doctor);
+    //await this.doctorRepository.delete(doctor);
   }
 }
