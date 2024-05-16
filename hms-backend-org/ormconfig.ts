@@ -32,7 +32,7 @@ import { User } from 'src/patient/entities/user.entity';
 
 const config: PostgresConnectionOptions = {
   type: 'postgres',
-  database: 'hms_org',
+  database: 'HMS_ORG',
   host: 'localhost',
   port: 5432,
   username: 'postgres',
