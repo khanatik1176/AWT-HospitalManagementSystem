@@ -86,7 +86,6 @@ const DoctorList_Admin = () => {
         <table className="min-w-full bg-white">
           <thead>
             <tr>
-              <th className="py-2 px-4 bg-gray-200">ID</th>
               <th className="py-2 px-4 bg-gray-200">Full Name</th>
               <th className="py-2 px-4 bg-gray-200">Email</th>
               <th className="py-2 px-4 bg-gray-200">Date of Birth</th>
@@ -106,7 +105,6 @@ const DoctorList_Admin = () => {
           <tbody>
             {filteredData.map((doctor) => (
               <tr key={doctor.id}>
-                <td className="py-2 px-4 border-b">{doctor.id}</td>
                 <td className="py-2 px-4 border-b">{doctor.doctorFullName}</td>
                 <td className="py-2 px-4 border-b">{doctor.doctorEmail}</td>
                 <td className="py-2 px-4 border-b">{doctor.doctorDateOfBirth}</td>

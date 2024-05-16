@@ -24,6 +24,11 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     icon: <Icon icon="mdi:account-group" width="24" height="24" />,
   },
   {
+    title: 'Admin List',
+    path: '/dashboards/admin/adminid/admins',
+    icon: <Icon icon="fa-solid:user-tie" width="24" height="24" />, // You can choose an appropriate icon for Admin List
+  },
+  {
     title: 'Notifications',
     path: '/dashboards/admin/adminid/notifications',
     icon: <Icon icon="bx:bx-bell" width="24" height="24" />,

@@ -1,228 +1,106 @@
 'use client'
-import React, { useState } from 'react'
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import { useRouter, useSearchParams } from 'next/navigation'
+import React, { useState } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
-const url = window.location.pathname;
-const parts = url.split('/');
-const adminId = parts[3]; // Index 3 contains the admin ID (4 in this case)
-
-const CreateDoctorForm = () => {
-  const [formData, setFormData] = useState({
-    doctorFullName: '',
-    doctorEmail: '',
-    doctorDateOfBirth: '',
-    doctorAddress: '',
-    doctorPhoneNumber: '',
-    doctorNID: '',
-    doctorBMDCNo: '',
-    doctorSpeciality: '',
-    doctorAvailableDay: '',
-    doctorStartingTime: '',
-    doctorEndingTime: '',
-    doctorCommission: '',
-    doctorFee: ''
-  });
-
+const AddNotification = () => {
+  const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
+  const [recipientDoctors, setRecipientDoctors] = useState(false);
+  const [recipientPatients, setRecipientPatients] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState('');
-
+  const router = useRouter();
   const token = Cookies.get('token');
-  const router = useRouter(); // Get the router instance
 
-  const handleChange = (e: any) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleCheckboxChange = (setter) => {
+    return (event) => {
+      setter(event.target.checked);
+    };
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    let recipientType = '';
+    if (recipientDoctors && recipientPatients) {
+      recipientType = 'both';
+    } else if (recipientDoctors) {
+      recipientType = 'doctors';
+    } else if (recipientPatients) {
+      recipientType = 'patients';
+    } else {
+      setError('Please select at least one recipient type.');
+      return;
+    }
+
     try {
-      const result = await axios.post('http://localhost:4000/admin/doctors', formData, {
+      await axios.post('http://localhost:4000/notifications', {
+        title,
+        message,
+        recipientType,
+      }, {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
-      setSuccess('Doctor created successfully!');
-      setError(null);
-      setTimeout(() => {
-        router.push(`/admin/${adminId}/doctors`);
-      }, 2000);
-    } catch (err: any) {
-      setError(err.response.data.message);
-      setSuccess('');
+      router.push('/dashboards/admin/adminid/notifications');
+    } catch (err) {
+      setError(err.response ? err.response.data.message : err.message);
     }
   };
 
   return (
-    <div className="form-container bg-gray-600 h-screen flex items-center justify-center">
-      <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-4xl">
-        <h2 className="text-2xl font-bold mb-5">Create Doctor</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="mb-4">
-              <label className="block text-gray-700">Full Name</label>
-              <input
-                type="text"
-                name="doctorFullName"
-                value={formData.doctorFullName}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Email</label>
-              <input
-                type="email"
-                name="doctorEmail"
-                value={formData.doctorEmail}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Date of Birth</label>
-              <input
-                type="date"
-                name="doctorDateOfBirth"
-                value={formData.doctorDateOfBirth}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Address</label>
-              <input
-                type="text"
-                name="doctorAddress"
-                value={formData.doctorAddress}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Phone Number</label>
-              <input
-                type="tel"
-                name="doctorPhoneNumber"
-                value={formData.doctorPhoneNumber}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">NID</label>
-              <input
-                type="text"
-                name="doctorNID"
-                value={formData.doctorNID}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">BMDC No</label>
-              <input
-                type="text"
-                name="doctorBMDCNo"
-                value={formData.doctorBMDCNo}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Speciality</label>
-              <input
-                type="text"
-                name="doctorSpeciality"
-                value={formData.doctorSpeciality}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Available Day</label>
-              <input
-                type="text"
-                name="doctorAvailableDay"
-                value={formData.doctorAvailableDay}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Starting Time</label>
-              <input
-                type="time"
-                name="doctorStartingTime"
-                value={formData.doctorStartingTime}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Ending Time</label>
-              <input
-                type="time"
-                name="doctorEndingTime"
-                value={formData.doctorEndingTime}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Commission (%)</label>
-              <input
-                type="number"
-                step="0.01"
-                name="doctorCommission"
-                value={formData.doctorCommission}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700">Fee ($)</label>
-              <input
-                type="number"
-                step="0.01"
-                name="doctorFee"
-                value={formData.doctorFee}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
-            </div>
+    <div className="dashboard-main bg-gray-600 h-screen flex justify-center items-center">
+      <form onSubmit={handleSubmit} className="bg-white p-10 rounded-lg shadow-md w-1/2">
+        <h1 className="text-2xl font-bold mb-4">Add Notification</h1>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <div className="mb-4">
+          <label className="block text-gray-700">Title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full px-3 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Message</label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="w-full px-3 py-2 border rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-2">Recipient Type</label>
+          <div className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              checked={recipientDoctors}
+              onChange={handleCheckboxChange(setRecipientDoctors)}
+              className="mr-2"
+            />
+            <label className="text-gray-700">Doctors</label>
           </div>
-          {error && <div className="text-red-500 mb-4">{error}</div>}
-          {success && <div className="text-green-500 mb-4">{success}</div>}
-          <div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
-            >
-              Create Doctor
-            </button>
+          <div className="flex items-center mb-2">
+            <input
+              type="checkbox"
+              checked={recipientPatients}
+              onChange={handleCheckboxChange(setRecipientPatients)}
+              className="mr-2"
+            />
+            <label className="text-gray-700">Patients</label>
           </div>
-        </form>
-      </div>
+        </div>
+        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-lg">
+          Add Notification
+        </button>
+      </form>
     </div>
   );
-}
+};
 
-export default CreateDoctorForm;
+export default AddNotification;
