@@ -63,6 +63,9 @@ const EditDoctorForm = () => {
       });
       setSuccess('Doctor updated successfully!');
       setError(null);
+      setTimeout(() => {
+        router.push(`/dashboards/admin/adminId/doctors`);
+      }, 2000); // Wait for 2 seconds before redirecting
     } catch (err:any) {
       setError(err.response ? err.response.data.message : err.message);
       setSuccess('');

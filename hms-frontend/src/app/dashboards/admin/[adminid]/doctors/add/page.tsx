@@ -4,10 +4,6 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-const url = window.location.pathname;
-const parts = url.split('/');
-const adminId = parts[3]; // Index 3 contains the admin ID (4 in this case)
-
 const CreateDoctorForm = () => {
   const [formData, setFormData] = useState({
     doctorFullName: '',
@@ -49,7 +45,7 @@ const CreateDoctorForm = () => {
       setSuccess('Doctor created successfully!');
       setError(null);
       setTimeout(() => {
-        router.push(`/admin/${adminId}/doctors`);
+        router.push(`/dashboards/admin/adminId/doctors`);
       }, 2000);
     } catch (err: any) {
       setError(err.response.data.message);

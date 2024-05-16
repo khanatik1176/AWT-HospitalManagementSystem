@@ -25,8 +25,6 @@ const EditDoctorForm = () => {
   const [success, setSuccess] = useState('');
   const token = Cookies.get('token');
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const email = searchParams.get('email');
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -63,6 +61,7 @@ const EditDoctorForm = () => {
       });
       setSuccess('Doctor updated successfully!');
       setError(null);
+      router.push()
     } catch (err:any) {
       setError(err.response ? err.response.data.message : err.message);
       setSuccess('');
