@@ -16,4 +16,11 @@ export class UserController {
   async findAllByEmail(@Param('email') email: string) {
     return await this.userService.findAllByEmail(email);
   }
+
+  // @UseGuards(AuthGuard)
+  // @Roles('doctor')
+  @Get('findById/:id')
+  async findAllById(@Param('id') id: number) {
+    return await this.userService.findAllById(id);
+  }
 }

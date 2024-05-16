@@ -14,7 +14,7 @@ export class CreateMedicineListDto {
 
     @IsString()
     @IsNotEmpty()
-    @Matches(/^[a-zA-Z0-9 .]*$/, { message: 'Medicine Name can only contain letters, spaces, and periods', })
+    //@Matches(/^[a-zA-Z0-9 .]*$/, { message: 'Medicine Name can only contain letters, spaces, and periods', })
     med_name: string;
 
     @IsNotEmpty()
@@ -23,7 +23,7 @@ export class CreateMedicineListDto {
 
     @IsString()
     @IsNotEmpty()
-    @Matches(/^[a-zA-Z\s]+$/, { message: 'Medicine Generic can only contain letters, spaces, and periods', })
+    //@Matches(/^[a-zA-Z\s]+$/, { message: 'Medicine Generic can only contain letters, spaces, and periods', })
     med_generic: string;
 
     @IsNumber()
@@ -36,7 +36,7 @@ export class CreateMedicineListDto {
 
     @IsString()
     @IsNotEmpty()
-    @Matches(/^[a-zA-Z .]*$/, { message: 'Medicine Manufacturer can only contain letters, spaces, and periods', })
+    //@Matches(/^[a-zA-Z .]*$/, { message: 'Medicine Manufacturer can only contain letters, spaces, and periods', })
     med_manufacturer: string;
 
     @IsString()
