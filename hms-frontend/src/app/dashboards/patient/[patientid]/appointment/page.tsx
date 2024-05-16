@@ -71,11 +71,6 @@ const Page = () => {
         <div className='appointment-title '>
           <p className='appointment-text text-4xl text-black p-14 font-bold'>Appointment</p>
         </div>
-        <div className='search-bar-area flex justify-end pr-10'>
-        <form action="" className="search">
-        <input type="text" className='bg-white border-collapse pb-1 pt-1 pl-2 rounded-xl text-start text-black placeholder-black' placeholder='Search' name="" id="" />
-        </form>
-        </div>
         <button className="bg-white text-black rounded px-6 py-1 ml-16" onClick={() => setViewTable(!viewTable)}>View</button>
         <button className="bg-green-500 text-white rounded px-6 py-1 ml-5 mb-5" onClick={() => setFormOpen(!formOpen)}>Add</button>
         {formOpen && (

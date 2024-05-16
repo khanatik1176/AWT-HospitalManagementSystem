@@ -1,14 +1,10 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { AdminsService } from './admins.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { Admin } from '../../entities/admin.entity';
-import { Roles } from 'src/decorators/roles.decorator';
-import { AuthGuard } from 'src/auth/gurard/auth.guard';
 
 @Controller('admin/admins')
-// @UseGuards(AuthGuard)
-// @Roles('Admin')
 export class AdminsController {
   constructor(private readonly adminsService: AdminsService) {}
 
@@ -23,17 +19,21 @@ export class AdminsController {
   }
 
   @Get(':id')
-  async findOne(@Param('email') email: string): Promise<Admin> {
+  async findOne(@Param('id') email: string): Promise<Admin> { // Fix the parameter name to 'id'
     return this.adminsService.findOne(email);
   }
 
   @Put(':id')
-  async update(@Param('email') email: string, @Body() updateAdminDto: UpdateAdminDto): Promise<Admin> {
+  async update(@Param('id') email: string, @Body() updateAdminDto: UpdateAdminDto): Promise<Admin> {
     return this.adminsService.update(email, updateAdminDto);
   }
 
-  @Delete(':id')
-  async remove(@Param('email') email: string): Promise<void> {
-    return this.adminsService.remove(email);
+  @Delete(':deletingAdminEmail/:adminEmail')
+  async remove(
+    @Param('deletingAdminEmail') deletingAdminEmail: string,
+    @Param('adminEmail') adminEmail: string,
+  ): Promise<void> {
+    return this.adminsService.remove(deletingAdminEmail, adminEmail);
   }
+
 }

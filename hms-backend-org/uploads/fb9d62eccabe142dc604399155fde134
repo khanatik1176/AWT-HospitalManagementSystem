@@ -1,0 +1,13 @@
+Learning-Advanced-web-technologies-Spring-2023-2024-sec-A
+
+commands 
+
+git clone repo link 
+
+git add file name
+
+git commit -m "Message"
+
+git push origin main 
+
+ 

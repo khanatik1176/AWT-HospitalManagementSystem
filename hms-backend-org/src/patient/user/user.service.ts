@@ -20,4 +20,8 @@ export class UserService {
     async findAllByEmail(email: string) {
         return await this.userRepo.find({ where: { patient_email : email } });
     }
+
+    async findAllById(id: number) {
+        return await this.userRepo.find({ where: { id : id } });
+    }
 }

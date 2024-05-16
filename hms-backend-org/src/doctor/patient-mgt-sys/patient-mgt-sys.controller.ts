@@ -8,15 +8,15 @@ import { Roles } from 'src/decorators/roles.decorator';
 export class PatientMgtSysController {
   constructor(private readonly patientMgtSysService: PatientMgtSysService) {}
 
-  @UseGuards(AuthGuard)
-  @Roles('Doctor')
+  // @UseGuards(AuthGuard)
+  // @Roles('doctor')
   @Post('CreatePrescription')
   createPrescription(@Body(ValidationPipe) createPatientPrescriptionDto: CreatePatientPrescriptionDto) {
     return this.patientMgtSysService.createPrescription(createPatientPrescriptionDto);
   }
 
-  @UseGuards(AuthGuard)
-  @Roles('Doctor, Staff')
+  // @UseGuards(AuthGuard)
+  // @Roles('doctor')
   @Get('ViewAppointments/:doctor_id')
   async getAppointments(@Param('doctor_id', ParseIntPipe) doctorId: number) {
     const appointments = await this.patientMgtSysService.getAppointments(doctorId);

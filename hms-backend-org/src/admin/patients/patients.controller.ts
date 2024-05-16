@@ -4,7 +4,7 @@ import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 import { User } from '../../patient/entities/user.entity';
 
-@Controller('patients')
+@Controller('admin/patients')
 export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 

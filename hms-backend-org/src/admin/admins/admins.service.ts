@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Admin } from '../../entities/admin.entity';
@@ -39,15 +39,26 @@ export class AdminsService {
   }
 
   async findOne(email: string): Promise<Admin> {
-    return this.adminRepository.findOne({where: { adminEmail: email } });
+    return this.adminRepository.findOne({ where: { adminEmail: email } });
   }
 
   async update(email: string, updateAdminDto: UpdateAdminDto): Promise<Admin> {
-    await this.adminRepository.update(email, updateAdminDto);
-    return this.adminRepository.findOne({where: { adminEmail: email } });
+    await this.adminRepository.update({ adminEmail: email }, updateAdminDto); // Update by email
+    return this.adminRepository.findOne({ where: { adminEmail: email } });
   }
 
-  async remove(email: string): Promise<void> {
-    await this.adminRepository.delete({ adminEmail: email } );
+  async remove(deletingAdminEmail: string, email: string): Promise<void> {
+    const deletingAdmin = await this.adminRepository.findOne({ where: { adminEmail: deletingAdminEmail } });
+    const adminToDelete = await this.adminRepository.findOne({ where: { adminEmail: email } });
+
+    if (!deletingAdmin || !adminToDelete) {
+      throw new NotFoundException('Admin not found');
+    }
+
+    if (deletingAdmin.adminRole === 'SuperAdmin' || (deletingAdmin.adminRole === 'Admin' && adminToDelete.adminRole !== 'Admin')) {
+      await this.adminRepository.delete({ adminEmail: email });
+    } else {
+      throw new UnauthorizedException('You do not have permission to delete this admin');
+    }
   }
 }

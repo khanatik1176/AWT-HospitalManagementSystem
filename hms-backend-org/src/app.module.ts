@@ -22,6 +22,7 @@ import { MedicalRecordModule } from './patient/medical-record/medical-record.mod
 import { SymptomCheckerModule } from './patient/symptom_checker/symptom_checker.module';
 import { UserModule } from './patient/user/user.module';
 import { LlmModule } from './llm/llm.module';
+import { FeedbacksModule } from './admin/feedbacks/feedbacks.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(Ormconfig),
@@ -43,6 +44,7 @@ import { LlmModule } from './llm/llm.module';
             SymptomCheckerModule,
             UserModule,
             LlmModule,
+            FeedbacksModule,
 
           ],
   controllers: [AppController],
