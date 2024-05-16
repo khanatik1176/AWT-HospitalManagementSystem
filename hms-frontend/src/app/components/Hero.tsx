@@ -19,7 +19,7 @@ const Hero = () => {
             <div className="hero-btn pt-20 pl-16">
             <Button
             type = "button"
-            title = "Login"/>
+            title = "Chat With AI"/>
             
             </div>
             

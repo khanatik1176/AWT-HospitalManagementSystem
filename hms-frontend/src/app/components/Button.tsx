@@ -37,9 +37,18 @@ const Button = ({type, title}: ButtonProps) => {
    else if (title === "Forget Password") {
     return (
       
+      
         <button  type={type} className="px-8 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 hover:text-black mt-6 ">
           {title}
         </button>
+   )}
+   else if (title === "Chat With AI") {
+    return (
+      <Link href= "./llm">
+        <button  type={type} className="px-8 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 hover:text-black mt-6 ">
+          {title}
+        </button>
+        </Link>
     );
    }
    else {
