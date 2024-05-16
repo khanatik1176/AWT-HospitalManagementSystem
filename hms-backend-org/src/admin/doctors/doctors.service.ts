@@ -21,7 +21,7 @@ export class DoctorsService {
     // Create Auth entity
     const auth = new Auth();
     auth.email = createDoctorDto.doctorEmail;
-    auth.password = 'Password123';
+    auth.password = 'Password123'; // You should hash the password in a real application
     auth.role = 'doctor';
     auth.active = true;
 
@@ -46,13 +46,19 @@ export class DoctorsService {
   }
 
   async update(email: string, updateDoctorDto: UpdateDoctorDto): Promise<Doctor> {
-    await this.doctorRepository.update(email, updateDoctorDto);
+    const doctor = await this.doctorRepository.findOne({ where: { doctorEmail: email } });
+    if (!doctor) {
+      throw new NotFoundException(`Doctor with email ${email} not found`);
+    }
+    await this.doctorRepository.update({ doctorEmail: email }, updateDoctorDto);
     return this.doctorRepository.findOne({ where: { doctorEmail: email } });
   }
 
   async remove(email: string): Promise<void> {
-    const doctor = (await this.doctorRepository.findOne({ where: { doctorEmail: email } })).id;
-    console.log(doctor);
-    //await this.doctorRepository.delete(doctor);
+    const doctor = await this.doctorRepository.findOne({ where: { doctorEmail: email } });
+    if (!doctor) {
+      throw new NotFoundException(`Doctor with email ${email} not found`);
+    }
+    await this.doctorRepository.delete({ doctorEmail: email });
   }
 }
