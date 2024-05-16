@@ -22,7 +22,7 @@ export class AdminsService {
     const auth = new Auth();
     auth.email = createAdminDto.adminEmail;
     auth.password = 'Password123';
-    auth.role = 'Admin';
+    auth.role = 'admin';
     auth.active = true;
 
     // Save both entities in a transaction

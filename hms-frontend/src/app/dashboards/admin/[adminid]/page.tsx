@@ -21,7 +21,7 @@ const DashboardPanel = () => {
       setData(result.data[0].patient_fullname);
       console.log(result.data) // Use result.data.patient_fullname directly
       console.log(data); // Use result.data.patient_fullname directly
-    } catch (err) {
+    } catch (err:any) {
       setError(err.response.data.message);
       console.error(err);
     }

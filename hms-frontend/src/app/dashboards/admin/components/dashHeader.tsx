@@ -32,7 +32,7 @@ const DashHeader = () => {
                         <span className="font-bold text-xl flex ">Logo</span>
                     </Link>
                 </div>
-
+                
                 <div className="hidden md:block">
                     <div className="h-8 w-8 rounded-full bg-zinc-300 flex items-center justify-center text-center">
                         <span className="font-semibold text-sm"><Image src={headLogo} alt='logo'></Image></span>

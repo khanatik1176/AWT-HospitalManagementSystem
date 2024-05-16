@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SIDENAV_ITEMS } from './constants-doc';
+import { SIDENAV_ITEMS } from './constants';
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react';
 
@@ -17,7 +17,7 @@ const SideBar = () => {
           href="/"
           className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-indigo-400 -12 w-full mt-2"
         >
-          <span className="h-7 w-7 bg-black rounded-lg" />
+          <img src="/Assets/Logo.png" className="w-20 h-20 rounded-lg" alt="Logo" />
           <span className="font-bold text-xl hidden md:flex text-white">Doctoria</span>
         </Link>
 
