@@ -7,6 +7,8 @@ export class CreateNotificationDto {
   @IsString()
   message: string;
 
-  @IsIn(['doctor', 'patient', 'both'])
+  @IsIn(['doctor', 'patient', 'both'], {
+    message: 'recipientType must be either doctor, patient, or both',
+  })
   recipientType: 'doctor' | 'patient' | 'both';
 }
