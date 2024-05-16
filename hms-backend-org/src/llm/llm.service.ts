@@ -1,3 +1,4 @@
+// llm.service.ts
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 
@@ -13,32 +14,17 @@ export class LlmService {
         { role: "user", content: data.message }
       ],
       temperature: data.temperature || 0.7,
-      max_tokens: data.max_tokens || 500,
-      stream: data.stream || true
+      max_tokens: data.max_tokens || -1,
     };
   }
 
   async getChatCompletions(data: any) {
     const processedData = this.processData(data);
     const response = await this.httpService.post('http://localhost:1234/v1/chat/completions', processedData).toPromise();
-    
-    console.log(response.data.choices[0].delta.content);
-
-    // Store the responses in an array
-    const responses = Array.isArray(response.data) ? response.data : [response.data];
-    
   
-    let message = '';
-    responses.map(item => {
-      if (item.choices && Array.isArray(item.choices)) {
-        item.choices.map(choice => {
-          if (choice.delta && choice.delta.content) {
-            message += choice.delta.content;
-          }
-        });
-      }
-    });
-    
-    return message;
+    // Extract the content from the response
+    const content = response.data.choices[0].message.content;
+  
+    return content;
   }
 }
