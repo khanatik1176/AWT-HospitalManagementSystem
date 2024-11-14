@@ -1,7 +1,7 @@
 # Digicraft Hospital Management System
 
 **Full-Stack Web-based Hospital Management System**  
-Built with **Next.js, NestJS, PostgreSQL, Swagger API Docs, JWT, Git, Docker, LMStudio,** and **LAMMA3**  
+Developed using **Next.js, NestJS, PostgreSQL, Swagger API Docs, JWT, Git, Docker, LMStudio,** and **LAMMA3**  
 
 The Digicraft Hospital Management System is a comprehensive SaaS application designed to streamline hospital operations with a robust multi-tenancy architecture. It offers role-based access tailored for Doctors, Staff, Patients, and a Super Admin (System Owner), enabling each role to access unique functionalities within the platform. Integrated with a Medical AI Chatbot, this system enhances user experience by providing immediate assistance and automating responses to common inquiries.
 
