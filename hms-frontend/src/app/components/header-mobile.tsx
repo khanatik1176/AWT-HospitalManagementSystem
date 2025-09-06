@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { SIDENAV_ITEMS } from '@/constants';
-import { SideNavItem } from '@/types';
+import { SideNavItem } from '../../../types/types';
 import { Icon } from '@iconify/react';
 import { motion, useCycle } from 'framer-motion';
 
